@@ -3,14 +3,18 @@ import {
   AddTodoAction, DELETE_TODO, DeleteTodoAction,
   EDIT_TODO,
   EditTodoAction,
-  TodoActions,
-  TOGGLE_TODO,
+  TodoActions, TOGGLE_ALL_TODO,
+  TOGGLE_TODO, ToggleAllTodoAction,
   ToggleTodoAction
 } from './todo.actions';
 import {Todo} from './models/todo.model';
+import {FilterType} from './filter/filter.actions';
+import {ActionReducerMap} from '@ngrx/store';
+import {filterReducer} from './filter/filter.reducer';
 
 export interface AppState {
   todos: Todo[];
+  filter: FilterType;
 }
 
 const initialState: Todo[] = [
@@ -71,8 +75,21 @@ export function todoReducer(state: Todo[] = initialState, action: TodoActions): 
         return state.filter((todo: Todo) => todo.id !== action.id);
       }
       break;
+
+    case TOGGLE_ALL_TODO:
+      if (action instanceof ToggleAllTodoAction) {
+        return state.map((todo: Todo) => {
+          return {...todo, completion: !todo.completion}
+        });
+      }
+      break;
     default: {
       return state;
     }
   }
+}
+
+export const reducers: ActionReducerMap<AppState> = {
+  todos: todoReducer,
+  filter: filterReducer
 }
