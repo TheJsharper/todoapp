@@ -1,6 +1,6 @@
 import {
   ADD_TODO,
-  AddTodoAction, DELETE_TODO, DeleteTodoAction,
+  AddTodoAction, DELETE_COMPLETED_TODO, DELETE_TODO, DeleteAllCompletedTodoAction, DeleteTodoAction,
   EDIT_TODO,
   EditTodoAction,
   TodoActions, TOGGLE_ALL_TODO,
@@ -81,6 +81,11 @@ export function todoReducer(state: Todo[] = initialState, action: TodoActions): 
         return state.map((todo: Todo) => {
           return {...todo, completion: !todo.completion}
         });
+      }
+      break;
+    case  DELETE_COMPLETED_TODO:
+      if (action instanceof DeleteAllCompletedTodoAction) {
+        return state.filter((todo: Todo) => !todo.completion);
       }
       break;
     default: {

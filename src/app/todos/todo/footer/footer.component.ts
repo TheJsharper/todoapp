@@ -5,6 +5,7 @@ import {Store} from '@ngrx/store';
 import {map, filter} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Todo} from '../models/todo.model';
+import {DeleteAllCompletedTodoAction} from "../todo.actions";
 
 @Component({
   selector: 'app-footer',
@@ -29,6 +30,10 @@ export class FooterComponent implements OnInit {
 
   changeFilter(filter: FilterType): void {
     this.store.dispatch(new SetFilterAction(filter));
+  }
+
+  clearCompletedTodos(): void {
+    this.store.dispatch(new DeleteAllCompletedTodoAction());
   }
 
 }
