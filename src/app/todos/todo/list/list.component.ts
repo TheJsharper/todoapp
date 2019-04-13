@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.store.subscribe((state: AppState) => {
-      console.log(state);
+      //console.log(state);
       this.todos = state.todos;
     })
   }

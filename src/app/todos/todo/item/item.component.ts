@@ -1,5 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Todo} from "../models/todo.model";
+import {FormControl, Validators} from "@angular/forms";
+import {AppState} from "../todo.reducer";
+import {Store} from "@ngrx/store";
+import {ToggleTodoAction} from "../todo.actions";
 
 @Component({
   selector: 'app-item',
@@ -9,10 +13,30 @@ import {Todo} from "../models/todo.model";
 export class ItemComponent implements OnInit {
   @Input('todo') todo: Todo;
 
-  constructor() {
+  @ViewChild('contentInput') contentInput: ElementRef;
+
+  chkField: FormControl;
+  content: FormControl;
+  editing: boolean;
+
+  constructor(private  store: Store<AppState>) {
   }
 
   ngOnInit() {
+    this.chkField = new FormControl(this.todo.completion);
+    this.content = new FormControl(this.todo.content, Validators.required);
+    this.chkField.valueChanges.subscribe((value: boolean) => this.store.dispatch(new ToggleTodoAction(this.todo.id)))
   }
 
+  edit(): void {
+    this.editing = true;
+    setTimeout(() => {
+      this.contentInput.nativeElement.select();
+    }, 20)
+
+  }
+
+  leave(): void {
+    this.editing = false;
+  }
 }
