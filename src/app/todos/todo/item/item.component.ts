@@ -3,7 +3,7 @@ import {Todo} from "../models/todo.model";
 import {FormControl, Validators} from "@angular/forms";
 import {AppState} from "../todo.reducer";
 import {Store} from "@ngrx/store";
-import {ToggleTodoAction} from "../todo.actions";
+import {DeleteTodoAction, EditTodoAction, ToggleTodoAction} from "../todo.actions";
 
 @Component({
   selector: 'app-item',
@@ -25,18 +25,23 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this.chkField = new FormControl(this.todo.completion);
     this.content = new FormControl(this.todo.content, Validators.required);
-    this.chkField.valueChanges.subscribe((value: boolean) => this.store.dispatch(new ToggleTodoAction(this.todo.id)))
+    this.chkField.valueChanges.subscribe((value: boolean) => this.store.dispatch(new ToggleTodoAction(this.todo.id)));
   }
 
   edit(): void {
     this.editing = true;
     setTimeout(() => {
       this.contentInput.nativeElement.select();
-    }, 20)
+    }, 20);
 
   }
 
   leave(): void {
     this.editing = false;
+    this.store.dispatch(new EditTodoAction(this.todo.id, this.content.value));
+  }
+
+  deleteTodo(): void {
+      this.store.dispatch(new DeleteTodoAction(this.todo.id));
   }
 }
