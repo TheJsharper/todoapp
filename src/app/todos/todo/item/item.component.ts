@@ -13,7 +13,7 @@ import {DeleteTodoAction, EditTodoAction, ToggleTodoAction} from "../todo.action
 export class ItemComponent implements OnInit {
   @Input('todo') todo: Todo;
 
-  @ViewChild('contentInput') contentInput: ElementRef;
+  @ViewChild('contentInput', {static:true}) contentInput: ElementRef;
 
   chkField: FormControl;
   content: FormControl;
