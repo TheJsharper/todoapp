@@ -13,7 +13,7 @@ import {
   ToggleTodoAction, TOGGLE_ALL_TODO,
   TOGGLE_TODO
 } from './todo.actions';
-import { AppState } from 'src/app/store/reducers/app.reducer';
+import { AppState } from '../../store/reducers/app.reducer';
 
 export interface TodosState extends AppState{
   todos: Todo[];

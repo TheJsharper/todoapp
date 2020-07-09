@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-//import {AppState} from '../todo.reducer';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AppState } from 'src/app/store/reducers/app.reducer';
+import { AppState } from '../../../store/reducers/app.reducer';
 import { FilterType, SetFilterAction } from '../filter/filter.actions';
-import { Todo } from '../models/todo.model';
 import { DeleteAllCompletedTodoAction } from "../todo.actions";
 import { selectFilter, selectPendingTodos } from '../todo.selectors';
 

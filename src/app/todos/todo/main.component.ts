@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 //import {AppState} from "./todo.reducer";
 import {Store} from '@ngrx/store';
 import {ToggleAllTodoAction} from "./todo.actions";
-import { AppState } from 'src/app/store/reducers/app.reducer';
+import { AppState } from '../../store/reducers/app.reducer';
 
 @Component({
   selector: 'app-todo-main',

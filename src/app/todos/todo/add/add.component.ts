@@ -3,7 +3,7 @@ import {FormControl, Validators} from '@angular/forms'
 //import {AppState} from "../todo.reducer";
 import {Store} from "@ngrx/store";
 import {AddTodoAction} from "../todo.actions";
-import { AppState } from 'src/app/store/reducers/app.reducer';
+import { AppState } from '../../../store/reducers/app.reducer';
 
 @Component({
   selector: 'app-add',

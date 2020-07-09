@@ -1,14 +1,13 @@
-import { createFeatureSelector, MemoizedSelector, createSelector } from '@ngrx/store';
-import { AppState } from 'src/app/store/reducers/app.reducer';
-import { TodosState } from './todo.reducer';
-import { Todo } from './models/todo.model';
+import { createFeatureSelector, createSelector, DefaultProjectorFn, MemoizedSelector } from '@ngrx/store';
+import { AppState } from '../../store/reducers/app.reducer';
 import { FilterType } from './filter/filter.actions';
+import { Todo } from './models/todo.model';
+import { TodosState } from './todo.reducer';
 
 export const selectFeature: MemoizedSelector<AppState, TodosState> = createFeatureSelector('todos');
 
-export const selectTodos: MemoizedSelector<TodosState, Todo[]> = createSelector(selectFeature, (todos: TodosState) => todos.todos);
-export const selectFilter: MemoizedSelector<TodosState, FilterType> = createSelector(selectFeature, (t: TodosState) => t.filter);
-//this.selectedFilter$ = this.store.select('filter').pipe(map((filter: FilterType) => filter));
-//export const selectedFilter:= createSelector(selectFeature,(state:TodosState)=> state.filter )
+export const selectTodos: MemoizedSelector<TodosState, Todo[], DefaultProjectorFn<Todo[]>> = createSelector(selectFeature, (todos: TodosState) => todos.todos);
+export const selectFilter: MemoizedSelector<TodosState, FilterType, DefaultProjectorFn<FilterType>> = createSelector(selectFeature, (t: TodosState) => t.filter);
 
-export const selectPendingTodos:MemoizedSelector<TodosState, number> = createSelector(selectFeature, (state:TodosState)=> state.todos.filter((todo:Todo)=> !todo.completion).length)
+
+export const selectPendingTodos:MemoizedSelector<TodosState, number, DefaultProjectorFn<number>> = createSelector(selectFeature, (state:TodosState)=> state.todos.filter((todo:Todo)=> !todo.completion).length)

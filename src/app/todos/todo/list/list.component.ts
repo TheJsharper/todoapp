@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-//import {AppState} from "../todo.reducer";
 import { Store, select } from "@ngrx/store";
 import { Todo } from "../models/todo.model";
 import { FilterType } from "../filter/filter.actions";
-import { AppState } from 'src/app/store/reducers/app.reducer';
+import { AppState } from '../../../store/reducers/app.reducer';
 import { selectTodos, selectFilter } from '../todo.selectors';
 
 @Component({
