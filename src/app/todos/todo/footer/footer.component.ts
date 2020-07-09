@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FilterType, SetFilterAction} from '../filter/filter.actions';
-import {AppState} from '../todo.reducer';
-import {Store} from '@ngrx/store';
-import {map, filter} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {Todo} from '../models/todo.model';
-import {DeleteAllCompletedTodoAction} from "../todo.actions";
+import { Component, OnInit } from '@angular/core';
+//import {AppState} from '../todo.reducer';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AppState } from 'src/app/store/reducers/app.reducer';
+import { FilterType, SetFilterAction } from '../filter/filter.actions';
+import { Todo } from '../models/todo.model';
+import { DeleteAllCompletedTodoAction } from "../todo.actions";
+import { selectFilter, selectPendingTodos } from '../todo.selectors';
 
 @Component({
   selector: 'app-footer',
@@ -18,14 +20,12 @@ export class FooterComponent implements OnInit {
   selectedFilter$: Observable<FilterType>;
   pendingTodos$: Observable<number>;
 
-  constructor(private  store: Store<AppState>) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit() {
-    this.selectedFilter$ = this.store.select('filter').pipe(map((filter: FilterType) => filter));
-    this.pendingTodos$ = this.store.select('todos').pipe(map((todos: Todo[]) => {
-      return todos.filter((todo: Todo) => !todo.completion).length;
-    }));
+    this.selectedFilter$ = this.store.pipe(select(selectFilter));
+    this.pendingTodos$ = this.store.pipe(select(selectPendingTodos));
   }
 
   changeFilter(filter: FilterType): void {

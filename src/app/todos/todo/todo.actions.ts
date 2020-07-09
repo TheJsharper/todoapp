@@ -1,4 +1,4 @@
-import {Action} from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 export const ADD_TODO: string = '[TODO] add todo';
 export const TOGGLE_TODO: string = '[TODO] toggle todo';
@@ -11,6 +11,7 @@ export class AddTodoAction implements Action {
   readonly type: string = ADD_TODO;
 
   constructor(public content: string) {
+    console.log("action construct", content);
   }
 }
 

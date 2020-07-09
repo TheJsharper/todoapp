@@ -1,6 +1,6 @@
 <ul class="todo-list">
 
-  <app-item  *ngFor="let todo of todos | filterTodo: filterType " [todo]="todo">
+  <app-item *ngFor="let todo of (todos|async) | filterTodo: (filterType| async) " [todo]="todo">
 
   </app-item>
 

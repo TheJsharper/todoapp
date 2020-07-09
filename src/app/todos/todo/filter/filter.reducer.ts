@@ -7,7 +7,6 @@ export function filterReducer(state: FilterType = initialState, action: FilterAc
   switch (action.type) {
     case SET_FILTER:
       return action.filter;
-      break;
     default: {
       return state;
     }

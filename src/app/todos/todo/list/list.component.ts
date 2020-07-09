@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {AppState} from "../todo.reducer";
-import {Store} from "@ngrx/store";
-import {Todo} from "../models/todo.model";
-import {FilterType} from "../filter/filter.actions";
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+//import {AppState} from "../todo.reducer";
+import { Store, select } from "@ngrx/store";
+import { Todo } from "../models/todo.model";
+import { FilterType } from "../filter/filter.actions";
+import { AppState } from 'src/app/store/reducers/app.reducer';
+import { selectTodos, selectFilter } from '../todo.selectors';
 
 @Component({
   selector: 'app-list',
@@ -11,18 +14,16 @@ import {FilterType} from "../filter/filter.actions";
 })
 export class ListComponent implements OnInit {
 
-  todos: Todo[] = [];
-  filterType: FilterType
+  filterType: Observable<FilterType>;
+  todos: Observable<Todo[]>;
 
-  constructor(private  store: Store<AppState>) {
+  constructor(private store: Store<AppState>) {
 
   }
 
   ngOnInit() {
-    this.store.subscribe((state: AppState) => {
-      this.filterType = state.filter;
-      this.todos = state.todos;
-    });
+    this.todos = this.store.pipe(select(selectTodos));
+    this.filterType = this.store.pipe(select(selectFilter));
   }
 
 }

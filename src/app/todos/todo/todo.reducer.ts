@@ -1,18 +1,21 @@
+import { ActionReducerMap } from '@ngrx/store';
+import { FilterType } from './filter/filter.actions';
+import { filterReducer } from './filter/filter.reducer';
+import { Todo } from './models/todo.model';
 import {
-  ADD_TODO,
-  AddTodoAction, DELETE_COMPLETED_TODO, DELETE_TODO, DeleteAllCompletedTodoAction, DeleteTodoAction,
-  EDIT_TODO,
-  EditTodoAction,
-  TodoActions, TOGGLE_ALL_TODO,
-  TOGGLE_TODO, ToggleAllTodoAction,
-  ToggleTodoAction
-} from './todo.actions';
-import {Todo} from './models/todo.model';
-import {FilterType} from './filter/filter.actions';
-import {ActionReducerMap} from '@ngrx/store';
-import {filterReducer} from './filter/filter.reducer';
+  AddTodoAction, ADD_TODO,
+  DeleteAllCompletedTodoAction, DeleteTodoAction, DELETE_COMPLETED_TODO, DELETE_TODO,
 
-export interface AppState {
+  EditTodoAction, EDIT_TODO,
+
+  TodoActions,
+  ToggleAllTodoAction,
+  ToggleTodoAction, TOGGLE_ALL_TODO,
+  TOGGLE_TODO
+} from './todo.actions';
+import { AppState } from 'src/app/store/reducers/app.reducer';
+
+export interface TodosState extends AppState{
   todos: Todo[];
   filter: FilterType;
 }
@@ -94,7 +97,7 @@ export function todoReducer(state: Todo[] = initialState, action: TodoActions): 
   }
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export const reducers: ActionReducerMap<TodosState> = {
   todos: todoReducer,
   filter: filterReducer
 }
