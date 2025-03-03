@@ -14,6 +14,7 @@ import {
   TOGGLE_TODO
 } from './todo.actions';
 import { AppState } from '../../store/reducers/app.reducer';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 export interface TodosState extends AppState{
   todos: Todo[];
@@ -29,10 +30,10 @@ const initialState: Todo[] = [
       value.completion = true;
     }
     return value;
-  });
+  }, );
 
 
-export function todoReducer(state: Todo[] = initialState, action: TodoActions): Todo[] {
+export function todoReducer(state: Todo[] = initialState, action: TodoActions): Todo[] | any {
 
 
   switch (action.type) {
@@ -97,7 +98,7 @@ export function todoReducer(state: Todo[] = initialState, action: TodoActions): 
   }
 }
 
-export const reducers: ActionReducerMap<TodosState> = {
+export const reducers/*: ActionReducerMap<TodosState, Action<string>>*/ = {
   todos: todoReducer,
   filter: filterReducer
 }
