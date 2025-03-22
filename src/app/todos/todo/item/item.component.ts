@@ -1,26 +1,29 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {Todo} from "../models/todo.model";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 //import {AppState} from "../todo.reducer";
 import {Store} from "@ngrx/store";
 import {DeleteTodoAction, EditTodoAction, ToggleTodoAction} from "../todo.actions";
 import { AppState } from '../../../store/reducers/app.reducer';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  imports: [ReactiveFormsModule, NgClass],
+  styleUrls: ['./item.component.scss'],
+  standalone: true
 })
 export class ItemComponent implements OnInit {
-  @Input('todo') todo: Todo;
+  @Input('todo') todo!: Todo;
 
-  @ViewChild('contentInput', {static:true}) contentInput: ElementRef;
+  @ViewChild('contentInput', {static:true}) contentInput!: ElementRef;
 
-  chkField: FormControl;
-  content: FormControl;
-  editing: boolean;
+  chkField!: FormControl;
+  content!: FormControl;
+  editing!: boolean;
 
-  constructor(private  store: Store<AppState>) {
+  constructor(@Inject(Store) private  store: Store<AppState>) {
   }
 
   ngOnInit() {

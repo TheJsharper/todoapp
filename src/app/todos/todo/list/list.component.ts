@@ -1,27 +1,32 @@
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Store, select } from "@ngrx/store";
-import { Todo } from "../models/todo.model";
-import { FilterType } from "../filter/filter.actions";
+import { Observable, of } from 'rxjs';
 import { AppState } from '../../../store/reducers/app.reducer';
-import { selectTodos, selectFilter } from '../todo.selectors';
+import { Todo } from "../models/todo.model";
+import { selectFilter, selectTodos } from '../todo.selectors';
+import { ItemComponent } from '../item';
+import { FilterPipe } from '../filter';
 
 @Component({
   selector: 'app-list',
+  standalone: true,
+  imports: [ItemComponent, FilterPipe],
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
 
-  filterType: Observable<FilterType>;
-  todos: Observable<Todo[]>;
+  filterType: Observable<'completed' | 'pending' | 'all' > = of('all');
 
-  constructor(private store: Store<AppState>) {
+  todos?: Observable<Todo[]>// = of([]);
+
+  constructor(@Inject(Store) private store: Store<AppState>) {
 
   }
 
   ngOnInit() {
     this.todos = this.store.pipe(select(selectTodos));
+
     this.filterType = this.store.pipe(select(selectFilter));
   }
 

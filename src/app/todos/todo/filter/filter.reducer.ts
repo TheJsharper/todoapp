@@ -1,8 +1,8 @@
-import {FilterActions, FilterType, SET_FILTER} from './filter.actions';
+import { SET_FILTER, SetFilterAction } from './filter.actions';
 
-const initialState: FilterType = 'all';
+//const initialState: FilterType = 'all';
 
-export function filterReducer(state: FilterType = initialState, action: FilterActions): FilterType {
+export function filterReducer(state: 'completed' | 'pending' | 'all' = 'all' , action: SetFilterAction): 'completed' | 'pending' | 'all'  {
 
   switch (action.type) {
     case SET_FILTER:
@@ -11,4 +11,5 @@ export function filterReducer(state: FilterType = initialState, action: FilterAc
       return state;
     }
   }
+  return state;
 }

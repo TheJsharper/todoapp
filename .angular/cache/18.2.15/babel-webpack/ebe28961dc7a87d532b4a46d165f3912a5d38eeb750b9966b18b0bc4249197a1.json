@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Todo {\n  id;\n  content;\n  completion;\n  constructor(content) {\n    this.id = Math.random();\n    this.content = `${content.charAt(0).toLowerCase()}${content.slice(1)}`;\n    this.completion = false;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

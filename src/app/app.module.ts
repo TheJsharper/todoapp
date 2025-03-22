@@ -1,26 +1,18 @@
 //import { reducers } from './todos/todo/todo.reducer';
-import { NgModule } from '@angular/core';
+import { importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { TodosModule } from './todos/todos.module';
+//import { TodosModule } from './todos/todos.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers/app.reducer';
 import { Routes, RouterModule } from '@angular/router';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule, StoreDevtoolsOptions } from '@ngrx/store-devtools';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../environments/environment';
 //import { environment } from 'src/environments/environment';
 
-const routes:Routes=[
-  {
-    path:"todo",
-    loadChildren: ()=> import('./todos/todos.module').then(m => m.TodosModule),
-
-  },
-  {
-    path: "**",
-    redirectTo: '/'
-}
-]
-
+/*
 @NgModule({
   declarations: [
     AppComponent
@@ -34,6 +26,6 @@ const routes:Routes=[
   ],
   providers: [],
   bootstrap: [AppComponent]
-})
+})*/
 export class AppModule {
 }

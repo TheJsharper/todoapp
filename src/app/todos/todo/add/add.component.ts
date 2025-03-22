@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms'
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
 //import {AppState} from "../todo.reducer";
 import {Store} from "@ngrx/store";
 import {AddTodoAction} from "../todo.actions";
@@ -8,24 +8,24 @@ import { AppState } from '../../../store/reducers/app.reducer';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  imports: [ReactiveFormsModule],
+  styleUrls: ['./add.component.scss'],
+  standalone: true
 })
-export class AddComponent implements OnInit {
-  contentInput: FormControl;
+export class AddComponent {
+  contentInput: FormControl<string |null> ;
 
-  constructor(private store: Store<AppState>) {
+  constructor(@Inject(Store)private store: Store<AppState>) {
+    this.contentInput = new FormControl<string | null>(null, Validators.required);
   }
 
-  ngOnInit() {
-    this.contentInput = new FormControl('', Validators.required);
-  }
-
+ 
   addTodo(): void {
-    if (this.contentInput.invalid) return;
+    if (this.contentInput?.invalid) return;
 
-    const action: AddTodoAction = new AddTodoAction(this.contentInput.value);
+    const action: AddTodoAction = new AddTodoAction(this.contentInput.value??'');
     this.store.dispatch(action);
-    this.contentInput.setValue('');
+    this.contentInput?.setValue('');
 
   }
 
