@@ -6,11 +6,12 @@ import { Todo } from "../models/todo.model";
 import { selectFilter, selectTodos } from '../todo.selectors';
 import { ItemComponent } from '../item';
 import { FilterPipe } from '../filter';
+import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [ItemComponent, FilterPipe],
+  imports: [ItemComponent, FilterPipe, AsyncPipe, NgFor],
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
