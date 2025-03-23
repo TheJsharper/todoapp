@@ -1,0 +1,1 @@
+rm -rvf node_modules/ && rm -rf package-lock.json && rm -rvf .angular && rm -rvf e2e && npm cache clean --force && npm cache verify &&  npm i --verbose && npx ng serve
