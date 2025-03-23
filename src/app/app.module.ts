@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers/app.reducer';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment';
 
 const routes:Routes=[
   {
@@ -27,8 +27,8 @@ const routes:Routes=[
   ],
   imports: [
     RouterModule.forRoot(routes),
-    StoreModule.forRoot(reducers,{ metaReducers}, ),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forRoot(reducers,{ metaReducers}, ), [StoreDevtoolsModule.instrument() ],
+    //!environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserModule,
     TodosModule
   ],
