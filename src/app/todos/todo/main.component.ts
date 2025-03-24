@@ -11,7 +11,7 @@ import { ToggleAllTodoAction } from "./todo.actions";
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponentF {
+export class MainComponent {
 
   constructor( @Inject(Store)private  store: Store<AppState>) {
   }
