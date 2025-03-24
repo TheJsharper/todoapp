@@ -41,7 +41,7 @@ export const routes: Routes = [
     redirectTo: '/todo'
   },
   {
-    path: "/",
+    path: " ",
     redirectTo: '/todo'
   }
 ];
