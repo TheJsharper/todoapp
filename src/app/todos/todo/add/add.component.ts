@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
-//import {AppState} from "../todo.reducer";
 import {Store} from "@ngrx/store";
 import {AddTodoAction} from "../todo.actions";
 import { AppState } from '../../../store/reducers/app.reducer';
