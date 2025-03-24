@@ -5,18 +5,7 @@ import { StoreDevtoolsModule, StoreDevtoolsOptions } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment';
 import { reducers } from './todos';
 
-/*
-export const routes:Routes=[
-  {
-    path:"todo",
-    loadChildren: ()=> import('./todos/todos.module').then(m => m.TodosModule),
 
-  },
-  {
-    path: "**",
-    redirectTo: '/'
-}
-]*/
 
 
 export const routes: Routes = [
@@ -48,17 +37,3 @@ export const routes: Routes = [
 
 
 
-/*@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    RouterModule.forRoot(routes),
-    StoreModule.forRoot(reducers,{ metaReducers}, ),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    BrowserModule,
-    TodosModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})*/
