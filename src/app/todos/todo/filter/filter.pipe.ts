@@ -1,13 +1,16 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {Todo} from '../models/todo.model';
-import {FilterType} from './filter.actions';
 
 @Pipe({
-  name: 'filterTodo'
+  name: 'filterTodo',
+  standalone: true
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(todos: Todo[], filter: FilterType): Todo[] {
+  transform(todos: Todo[], filter: 'completed' | 'pending' | 'all' ): Todo[] {
+    if (!todos) {
+      return [];
+    }
     switch (filter) {
       case 'completed':
         return todos.filter((todo: Todo) => todo.completion);

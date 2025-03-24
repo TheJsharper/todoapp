@@ -20,7 +20,7 @@ const routes:Routes=[
   }
 ]
 
-@NgModule({
+/*@NgModule({
   declarations: [MainComponent, ListComponent, ItemComponent, FooterComponent, PageFooterComponent, AddComponent, FilterPipe],
   imports: [
     CommonModule,
@@ -36,4 +36,4 @@ const routes:Routes=[
   exports: [MainComponent]
 })
 export class TodosModule {
-}
+}*/

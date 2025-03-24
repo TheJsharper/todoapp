@@ -1,24 +1,25 @@
-import { ActionReducerMap } from '@ngrx/store';
-import { FilterType } from './filter/filter.actions';
+import { Action, ActionReducer, ActionReducerMap } from '@ngrx/store';
+import { AppState } from '../../store/reducers/app.reducer';
 import { filterReducer } from './filter/filter.reducer';
 import { Todo } from './models/todo.model';
 import {
-  AddTodoAction, ADD_TODO,
-  DeleteAllCompletedTodoAction, DeleteTodoAction, DELETE_COMPLETED_TODO, DELETE_TODO,
-
-  EditTodoAction, EDIT_TODO,
-
+  ADD_TODO,
+  AddTodoAction,
+  DELETE_COMPLETED_TODO, DELETE_TODO,
+  DeleteAllCompletedTodoAction, DeleteTodoAction,
+  EDIT_TODO,
+  EditTodoAction,
   TodoActions,
+  TOGGLE_ALL_TODO,
+  TOGGLE_TODO,
   ToggleAllTodoAction,
-  ToggleTodoAction, TOGGLE_ALL_TODO,
-  TOGGLE_TODO
+  ToggleTodoAction
 } from './todo.actions';
-import { AppState } from '../../store/reducers/app.reducer';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { SetFilterAction } from './filter';
 
 export interface TodosState extends AppState{
   todos: Todo[];
-  filter: FilterType;
+  filter: 'completed' | 'pending' | 'all' ;
 }
 
 const initialState: Todo[] = [
@@ -33,7 +34,7 @@ const initialState: Todo[] = [
   }, );
 
 
-export function todoReducer(state: Todo[] = initialState, action: TodoActions): Todo[] | any {
+export function todoReducer(state: Todo[] = initialState, action: TodoActions): Todo[]  {
 
 
   switch (action.type) {
@@ -96,9 +97,15 @@ export function todoReducer(state: Todo[] = initialState, action: TodoActions): 
       return state;
     }
   }
+  return state;
 }
 
-export const reducers/*: ActionReducerMap<TodosState, Action<string>>*/ = {
+type todoReducerType = ActionReducer<Todo[], SetFilterAction>;
+
+type filterReducerType = ActionReducer<'completed' | 'pending' | 'all' , SetFilterAction>;
+
+export const reducers: ActionReducerMap<TodosState,SetFilterAction &TodoActions > = {
   todos: todoReducer,
-  filter: filterReducer
+  //filter: (state: 'completed' | 'pending' | 'all' = 'all', action: Action<string>) => filterReducer(state, action as SetFilterAction)
+  filter:  filterReducer
 }
