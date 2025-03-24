@@ -8,12 +8,10 @@ import { selectFilter, selectPendingTodos } from '../todo.selectors';
 import { AsyncPipe, NgClass, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-
-  imports: [AsyncPipe, NgClass, NgFor],
-  styleUrls: ['./footer.component.scss'],
-  standalone: true
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    imports: [AsyncPipe, NgClass, NgFor],
+    styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
 

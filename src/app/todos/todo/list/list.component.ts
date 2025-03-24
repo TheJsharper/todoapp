@@ -9,11 +9,10 @@ import { FilterPipe } from '../filter';
 import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [ItemComponent, FilterPipe, AsyncPipe, NgFor],
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'app-list',
+    imports: [ItemComponent, FilterPipe, AsyncPipe, NgFor],
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
 

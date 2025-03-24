@@ -5,11 +5,10 @@ import { AddComponent, FooterComponent, ListComponent } from './';
 import { ToggleAllTodoAction } from "./todo.actions";
 
 @Component({
-  selector: 'app-todo-main',
-  standalone: true,
-  imports: [  ListComponent,  FooterComponent, AddComponent],
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-todo-main',
+    imports: [ListComponent, FooterComponent, AddComponent],
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
 

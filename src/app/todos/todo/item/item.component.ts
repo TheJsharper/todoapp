@@ -7,11 +7,10 @@ import { AppState } from '../../../store/reducers/app.reducer';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  imports: [ReactiveFormsModule, NgClass],
-  styleUrls: ['./item.component.scss'],
-  standalone: true
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    imports: [ReactiveFormsModule, NgClass],
+    styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
   @Input('todo') todo!: Todo;

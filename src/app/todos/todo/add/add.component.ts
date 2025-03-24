@@ -5,11 +5,10 @@ import { AppState } from '../../../store/reducers/app.reducer';
 import { AddTodoAction } from "../todo.actions";
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  imports: [ReactiveFormsModule],
-  styleUrls: ['./add.component.scss'],
-  standalone: true
+    selector: 'app-add',
+    templateUrl: './add.component.html',
+    imports: [ReactiveFormsModule],
+    styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
   contentInput: FormControl<string |null> ;
