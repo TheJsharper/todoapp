@@ -5,7 +5,6 @@ export * from './item';
 export * from './list';
 export * from './main.component';
 export * from './models';
-export * from './page-footer';
 export * from './todo.actions';
 export * from './todo.reducer';
 export * from './todo.selectors';

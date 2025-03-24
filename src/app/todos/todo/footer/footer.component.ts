@@ -18,7 +18,9 @@ import { AsyncPipe, NgClass, NgFor } from '@angular/common';
 export class FooterComponent implements OnInit {
 
   filterTypes: ('completed' | 'pending' | 'all') [] = ['all', 'completed', 'pending'];
+
   selectedFilter$: Observable<'completed' | 'pending' | 'all' > = of('all');
+  
   pendingTodos$?: Observable<number>;
 
   constructor(@Inject(Store)private store: Store<AppState>) {

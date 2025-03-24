@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
-import {Store} from "@ngrx/store";
-import {AddTodoAction} from "../todo.actions";
+import { Component, Inject } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from "@ngrx/store";
 import { AppState } from '../../../store/reducers/app.reducer';
+import { AddTodoAction } from "../todo.actions";
 
 @Component({
   selector: 'app-add',

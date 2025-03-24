@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
 
   filterType: Observable<'completed' | 'pending' | 'all' > = of('all');
 
-  todos?: Observable<Todo[]>// = of([]);
+  todos: Observable<Todo[]> = of([]);
 
   constructor(@Inject(Store) private store: Store<AppState>) {
 
